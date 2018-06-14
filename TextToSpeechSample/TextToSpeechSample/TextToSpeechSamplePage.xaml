@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:TextToSpeechSample" 
+             x:Class="TextToSpeechSample.TextToSpeechSamplePage">
+
+    <StackLayout Orientation     = "Vertical"
+                 BackgroundColor = "#F1F9FE" >
+
+     <StackLayout BackgroundColor= "#FDDDEA"> 
+          <Label Text ="Tone: " />
+          <Slider x:Name = "sldTone" Minimum = "0" Maximum = "10" Value = "5" />
+
+          <Label Text ="Speed:" />
+          <Slider x:Name = "sldSpeed" Minimum = "0" Maximum = "10" Value = "5" />
+
+          <Label Text = "Volume" />
+          <Slider x:Name = "sldVolume" Minimum = "0" Maximum = "10" Value = "5" />
+
+           <Button Text = "Speech"   Clicked ="Speech_Cliked"    BackgroundColor ="Silver"/>
+    </StackLayout>
+        
+        <Label Text ="Write a text to spech:" />
+        <Entry x:Name="TextToSpeech" Text = "Write a text" />  
+          
+       
+
+    </StackLayout>
+    
+</ContentPage>

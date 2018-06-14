@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Plugin.TextToSpeech</name>
+    </assembly>
+    <members>
+        <member name="T:Plugin.TextToSpeech.Abstractions.CrossLocale">
+            <summary>
+            Struct for a language local
+            </summary>
+        </member>
+        <member name="P:Plugin.TextToSpeech.Abstractions.CrossLocale.Language">
+            <summary>
+            Main language code for iOS/WP/Android
+            </summary>
+        </member>
+        <member name="P:Plugin.TextToSpeech.Abstractions.CrossLocale.Country">
+            <summary>
+            Country code to use on Android
+            </summary>
+        </member>
+        <member name="P:Plugin.TextToSpeech.Abstractions.CrossLocale.DisplayName">
+            <summary>
+            Friendy Display Name if avaialble
+            </summary>
+        </member>
+        <member name="M:Plugin.TextToSpeech.Abstractions.CrossLocale.ToString">
+            <summary>
+            Language + Country if avaialble
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Plugin.TextToSpeech.Abstractions.ITextToSpeech">
+            <summary>
+            Interface for TTS
+            </summary>
+        </member>
+        <member name="M:Plugin.TextToSpeech.Abstractions.ITextToSpeech.Speak(System.String,System.Nullable{Plugin.TextToSpeech.Abstractions.CrossLocale},System.Nullable{System.Single},System.Nullable{System.Single},System.Nullable{System.Single},System.Threading.CancellationToken)">
+            <summary>
+            Speak back text
+            </summary>
+            <param name="text">Text to speak</param>
+            <param name="crossLocale">Locale of voice</param>
+            <param name="pitch">Pitch of voice</param>
+            <param name="speakRate">Speak Rate of voice (All) (0.0 - 2.0f)</param>
+            <param name="volume">Volume of voice (0.0-1.0)</param>
+            <param name="cancelToken">Canelation token to stop speak</param> 
+            <exception cref="T:System.ArgumentNullException">Thrown if text is null</exception>
+            <exception cref="T:System.ArgumentException">Thrown if text length is greater than maximum allowed</exception>
+        </member>
+        <member name="M:Plugin.TextToSpeech.Abstractions.ITextToSpeech.GetInstalledLanguages">
+            <summary>
+            Get avalid list of installed languages for TTS
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Plugin.TextToSpeech.Abstractions.ITextToSpeech.MaxSpeechInputLength">
+            <summary>
+            Gets the max string length of the speech engine
+            -1 means no limit
+            </summary>
+        </member>
+        <member name="T:Plugin.TextToSpeech.CrossTextToSpeech">
+            <summary>
+            Cross platform TTS implemenations
+            </summary>
+        </member>
+        <member name="P:Plugin.TextToSpeech.CrossTextToSpeech.IsSupported">
+            <summary>
+            Gets if the plugin is supported on the current platform.
+            </summary>
+        </member>
+        <member name="P:Plugin.TextToSpeech.CrossTextToSpeech.Current">
+            <summary>
+            Current plugin implementation to use
+            </summary>
+        </member>
+        <member name="M:Plugin.TextToSpeech.CrossTextToSpeech.Dispose">
+            <summary>
+            Dispose of TTS, reset lazy load
+            </summary>
+        </member>
+        <member name="T:Plugin.TextToSpeech.TextToSpeech">
+            <summary>
+            Text to speech implementation Android
+            </summary>
+        </member>
+        <member name="M:Plugin.TextToSpeech.TextToSpeech.OnInit(Android.Speech.Tts.OperationResult)">
+            <summary>
+            OnInit of TTS
+            </summary>
+            <param name="status"></param>
+        </member>
+        <member name="M:Plugin.TextToSpeech.TextToSpeech.Speak(System.String,System.Nullable{Plugin.TextToSpeech.Abstractions.CrossLocale},System.Nullable{System.Single},System.Nullable{System.Single},System.Nullable{System.Single},System.Threading.CancellationToken)">
+            <summary>
+            Speak back text
+            </summary>
+            <param name="text">Text to speak</param>
+            <param name="crossLocale">Locale of voice</param>
+            <param name="pitch">Pitch of voice</param>
+            <param name="speakRate">Speak Rate of voice (All) (0.0 - 2.0f)</param>
+            <param name="volume">Volume of voice (0.0-1.0)</param>
+            <param name="cancelToken">Canelation token to stop speak</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if text is null</exception>
+            <exception cref="T:System.ArgumentException">Thrown if text length is greater than maximum allowed</exception>
+        </member>
+        <member name="M:Plugin.TextToSpeech.TextToSpeech.GetInstalledLanguages">
+            <summary>
+            Get all installed and valide lanaguages
+            </summary>
+            <returns>List of CrossLocales</returns>
+        </member>
+        <member name="M:Plugin.TextToSpeech.TextToSpeech.GetInstalledLanguagesLollipop">
+            <summary>
+            In a different method as it can crash on older target/compile for some reason
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Plugin.TextToSpeech.TextToSpeech.MaxSpeechInputLength">
+            <summary>
+            Gets the max string length of the speech engine
+            -1 means no limit
+            </summary>
+        </member>
+        <member name="T:Plugin.TextToSpeech.TtsProgressListener">
+            <summary>
+            Tts progress listener.
+            </summary>
+        </member>
+        <member name="M:Plugin.TextToSpeech.TtsProgressListener.#ctor(System.Threading.Tasks.TaskCompletionSource{System.Object})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Plugin.TextToSpeech.TtsProgressListener"/> class.
+            </summary>
+            <param name="tcs">Tcs.</param>
+        </member>
+        <member name="M:Plugin.TextToSpeech.TtsProgressListener.OnDone(System.String)">
+            <summary>
+            Gets called on done to trigger next event.
+            </summary>
+            <param name="utteranceId">Utterance identifier.</param>
+        </member>
+        <member name="M:Plugin.TextToSpeech.TtsProgressListener.OnError(System.String)">
+            <summary>
+            Ons the error.
+            </summary>
+            <param name="utteranceId">Utterance identifier.</param>
+        </member>
+        <member name="M:Plugin.TextToSpeech.TtsProgressListener.OnStart(System.String)">
+            <summary>
+            Ons the start.
+            </summary>
+            <param name="utteranceId">Utterance identifier.</param>
+        </member>
+    </members>
+</doc>
